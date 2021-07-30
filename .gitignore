@@ -1,8 +1,8 @@
 .dart_tool/
 .idea/
 build/
+android/
 ios/
-lib/
 test/
 web/
 .packages
