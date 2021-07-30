@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +18,13 @@ class _HomePageState extends State<HomePage> {
               height: 360,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
+                children: <Widget>[Row(
+                  children: <Widget>[ Expanded(
+                        flex: 1,
+                        child: MyPrefilledSearch()
+                        ),
+                  ]
+                ),
                   Row(
                     children: <Widget>[
                       Expanded(
@@ -161,5 +168,27 @@ class LiveUpdateDetailWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MyPrefilledSearch extends StatefulWidget {
+  const MyPrefilledSearch({Key? key}) : super(key: key);
+
+  @override
+  _MyPrefilledSearchState createState() => _MyPrefilledSearchState();
+}
+
+class _MyPrefilledSearchState extends State<MyPrefilledSearch> {
+  late TextEditingController _textController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textController = TextEditingController(text: 'initial text');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoSearchTextField(controller: _textController);
   }
 }
