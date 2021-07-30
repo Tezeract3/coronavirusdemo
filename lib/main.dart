@@ -1,4 +1,6 @@
+import 'package:coronaliveupdate/screens/NavTestScreen.dart';
 import 'package:flutter/material.dart';
+
 import 'screens/homePage.dart';
 
 void main() {
@@ -13,6 +15,12 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomePage(),
+      initialRoute: NavTest.id,
+      routes: {
+        HomePage.id: (context) => HomePage(),
+        NavTest.id: (context) => NavTest(),
+        NavTest2.id: (context) => NavTest2(),
+      },
     );
   }
 }
