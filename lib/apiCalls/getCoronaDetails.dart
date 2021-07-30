@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class getCoronaDetails {
+class GetCoronaDetails {
   static var _apiData;
   static Future<http.Response> _httpResponse() async {
     return http.get(Uri.parse(""));

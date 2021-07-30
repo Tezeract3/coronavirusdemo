@@ -1,4 +1,4 @@
-import 'package:coronaliveupdate/bottomNavigationBar.dart';
+import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 
 class NavTest extends StatefulWidget {
