@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,7 +12,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          children: <Widget>[
+          children: <Widget>[MyPrefilledSearch(),
             //must add the dropdown box
             Container(
               height: 360,
@@ -161,5 +162,27 @@ class LiveUpdateDetailWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MyPrefilledSearch extends StatefulWidget {
+  const MyPrefilledSearch({Key? key}) : super(key: key);
+
+  @override
+  _MyPrefilledSearchState createState() => _MyPrefilledSearchState();
+}
+
+class _MyPrefilledSearchState extends State<MyPrefilledSearch> {
+  late TextEditingController _textController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textController = TextEditingController(text: 'initial text');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoSearchTextField(controller: _textController);
   }
 }
