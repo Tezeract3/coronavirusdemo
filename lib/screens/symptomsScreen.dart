@@ -4,27 +4,27 @@ import 'package:flutter/material.dart';
 
 List<Map<String, String>> dataList = [
   {
-    "name": "Heigh Fever",
+    "symptom": "Heigh Fever",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
   {
-    "name": "Dry Couch",
+    "symptom": "Dry Couch",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
   {
-    "name": "Heigh Fever",
+    "symptom": "Heigh Fever",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
   {
-    "name": "Heigh Fever",
+    "symptom": "Heigh Fever",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
   {
-    "name": "Heigh Fever",
+    "symptom": "Heigh Fever",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
@@ -166,7 +166,7 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
                               itemBuilder: (context, i) {
                                 return AnimationWidget(
                                   data: dataList[i]["data"].toString(),
-                                  title: dataList[i]["name"].toString(),
+                                  title: dataList[i]["symptom"].toString(),
                                 );
                               }),
                         )),

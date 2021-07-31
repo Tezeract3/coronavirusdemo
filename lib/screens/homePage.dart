@@ -36,15 +36,23 @@ class _HomePageState extends State<HomePage> {
                         scrollDirection: Axis.horizontal,
                         children: [
                           ExtraDetailWidget(
-                              heading: 'Heading 1',
-                              description: 'Description 1'),
+                            heading: 'Heading 1',
+                            description: 'Description 1',
+                            isImageOnLeft: false,
+                            imagePath: 'images/other/doctor.png',
+                          ),
                           ExtraDetailWidget(
-                              heading: 'Heading 1',
-                              description: 'Description 2'),
+                            heading: 'Heading 1',
+                            description: 'Description 2',
+                            isImageOnLeft: true,
+                            imagePath: 'images/other/patient.png',
+                          ),
                         ],
                       ),
                     ),
-
+                    SizedBox(
+                      height: 20,
+                    ),
                     Container(
                       margin: EdgeInsets.only(left: 10, right: 10),
                       child: SearchBar(),
