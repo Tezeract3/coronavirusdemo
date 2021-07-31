@@ -97,7 +97,7 @@ class ExtraDetailWidget extends StatelessWidget {
             left: isImageOnLeft ? 200.0 : 100.0,
             child: TextButton(
               onPressed: () {
-                Navigator.popAndPushNamed(context, SymptomsScreen.id);
+                Navigator.pushNamed(context, SymptomsScreen.id);
               },
               child: Container(
                 child: Row(
