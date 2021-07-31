@@ -1,4 +1,5 @@
 import 'package:coronaliveupdate/widget/liveUpdateWidget.dart';
+import 'package:coronaliveupdate/widget/pieChart.dart';
 import 'package:coronaliveupdate/widget/searchBarWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,13 @@ class _HomePageState extends State<HomePage> {
                           )
                         ],
                       ),
-                    )
+                    ),
+                    PieChartWidget(
+                      confirmCount: 590,
+                      dethCount: 800,
+                      activeCount: 700,
+                      recoverdCount: 500,
+                    ),
                   ],
                 ),
               ),
