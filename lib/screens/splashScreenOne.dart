@@ -1,4 +1,5 @@
 import 'package:coronaliveupdate/screens/homePage.dart';
+import 'package:coronaliveupdate/widget/coronaPicWidget.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenOne extends StatelessWidget {
@@ -21,7 +22,7 @@ class SplashScreenOne extends StatelessWidget {
             Positioned(
               top: size.height * 0.1,
               right: -(size.width * 0.5) / 2,
-              child: CoronaPicWidgect(
+              child: CoronaPicWidget(
                 opacity: 0.2,
                 size: size.width * 0.7,
               ),
@@ -31,7 +32,7 @@ class SplashScreenOne extends StatelessWidget {
             Positioned(
                 bottom: size.height * 0.2,
                 left: -50,
-                child: CoronaPicWidgect(
+                child: CoronaPicWidget(
                   opacity: 0.2,
                   size: size.width * 0.35,
                 )),
@@ -40,7 +41,7 @@ class SplashScreenOne extends StatelessWidget {
             Positioned(
               bottom: 0,
               right: size.width * 0.3,
-              child: CoronaPicWidgect(),
+              child: CoronaPicWidget(),
             ),
             Positioned.fill(
               child: BodyContainer(),
@@ -166,29 +167,6 @@ class BodyContainer extends StatelessWidget {
                 ),
               ))
         ],
-      ),
-    );
-  }
-}
-
-class CoronaPicWidgect extends StatelessWidget {
-  final double size;
-  final double opacity;
-
-  const CoronaPicWidgect({Key? key, this.size = 60, this.opacity = 1})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            colorFilter: new ColorFilter.mode(
-                Colors.white.withOpacity(opacity), BlendMode.dstATop),
-            image: AssetImage("images/icons/corona.png"),
-            fit: BoxFit.fill),
       ),
     );
   }
