@@ -44,6 +44,7 @@ flutter:
 
   assets:
     - images/icons/
+    - images/other/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,9 +1,11 @@
+import 'package:coronaliveupdate/widget/extraDetailWidget.dart';
 import 'package:coronaliveupdate/widget/liveUpdateWidget.dart';
 import 'package:coronaliveupdate/widget/pieChart.dart';
 import 'package:coronaliveupdate/widget/searchBarWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
+import 'package:flutter/rendering.dart';
 
 class HomePage extends StatefulWidget {
   static const String id = "HomePage";
@@ -27,6 +29,22 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       height: 10,
                     ),
+
+                    Container(
+                      height: 200,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          ExtraDetailWidget(
+                              heading: 'Heading 1',
+                              description: 'Description 1'),
+                          ExtraDetailWidget(
+                              heading: 'Heading 1',
+                              description: 'Description 2'),
+                        ],
+                      ),
+                    ),
+
                     Container(
                       margin: EdgeInsets.only(left: 10, right: 10),
                       child: SearchBar(),
