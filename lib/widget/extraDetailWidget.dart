@@ -1,10 +1,18 @@
+import 'package:coronaliveupdate/screens/symptomsScreen.dart';
 import 'package:flutter/material.dart';
 
 class ExtraDetailWidget extends StatelessWidget {
-  const ExtraDetailWidget({required this.description, required this.heading});
+  const ExtraDetailWidget({
+    required this.description,
+    required this.heading,
+    required this.isImageOnLeft,
+    required this.imagePath,
+  });
 
   final String heading;
   final String description;
+  final bool isImageOnLeft;
+  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,8 @@ class ExtraDetailWidget extends StatelessWidget {
               height: 150,
               child: Container(
                 height: 150,
-                alignment: Alignment.topLeft,
+                alignment:
+                    isImageOnLeft ? Alignment.topRight : Alignment.topLeft,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -35,8 +44,10 @@ class ExtraDetailWidget extends StatelessWidget {
                   children: [
                     Container(
                       width: 200,
-                      padding: EdgeInsets.only(left: 25, top: 25),
-                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(left: 25, top: 25, right: 25),
+                      alignment: isImageOnLeft
+                          ? Alignment.topRight
+                          : Alignment.topLeft,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -51,44 +62,14 @@ class ExtraDetailWidget extends StatelessWidget {
                     ),
                     Container(
                       width: 200,
-                      padding: EdgeInsets.only(left: 25),
-                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(left: 25, right: 25),
+                      alignment: isImageOnLeft
+                          ? Alignment.topRight
+                          : Alignment.topLeft,
                       child: Text(
                         '$description',
                         style: TextStyle(
                           color: Colors.white54,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        width: 200,
-                        alignment: Alignment.bottomRight,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.amber,
-                        ),
-                        padding: EdgeInsets.only(right: 10),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: null,
-                            child: Container(
-                              color: Colors.red,
-                              child: Row(
-                                children: [
-                                  Text('Read more'),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 18,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                     ),
@@ -98,15 +79,44 @@ class ExtraDetailWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 200,
+            left: isImageOnLeft ? 0 : 200,
             child: Container(
               height: 200,
               width: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                  image: AssetImage("images/other/doctor.png"),
+                  image: AssetImage(imagePath),
                   fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: isImageOnLeft ? 140.0 : 140.0,
+            left: isImageOnLeft ? 200.0 : 100.0,
+            child: TextButton(
+              onPressed: () {
+                Navigator.popAndPushNamed(context, SymptomsScreen.id);
+              },
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Read more',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                  ],
                 ),
               ),
             ),

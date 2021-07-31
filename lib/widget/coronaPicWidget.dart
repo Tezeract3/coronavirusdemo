@@ -17,7 +17,7 @@ class CoronaPicWidget extends StatelessWidget {
             colorFilter: new ColorFilter.mode(
                 Colors.white.withOpacity(opacity), BlendMode.dstATop),
             image: AssetImage("images/icons/corona.png"),
-            fit: BoxFit.fill),
+            fit: BoxFit.cover),
       ),
     );
   }
