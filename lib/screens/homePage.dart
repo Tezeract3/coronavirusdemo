@@ -1,10 +1,12 @@
+import 'package:coronaliveupdate/screens/howToPreventScreen.dart';
+import 'package:coronaliveupdate/screens/symptomsScreen.dart';
+import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
 import 'package:coronaliveupdate/widget/extraDetailWidget.dart';
 import 'package:coronaliveupdate/widget/liveUpdateWidget.dart';
 import 'package:coronaliveupdate/widget/pieChart.dart';
 import 'package:coronaliveupdate/widget/searchBarWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
 import 'package:flutter/rendering.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,12 +38,19 @@ class _HomePageState extends State<HomePage> {
                         scrollDirection: Axis.horizontal,
                         children: [
                           ExtraDetailWidget(
+                            onTapReadMore: () {
+                              Navigator.pushNamed(
+                                  context, HowToPreventScreen.id);
+                            },
                             heading: 'Heading 1',
                             description: 'Description 1',
                             isImageOnLeft: false,
                             imagePath: 'images/other/doctor.png',
                           ),
                           ExtraDetailWidget(
+                            onTapReadMore: () {
+                              Navigator.pushNamed(context, SymptomsScreen.id);
+                            },
                             heading: 'Heading 1',
                             description: 'Description 2',
                             isImageOnLeft: true,

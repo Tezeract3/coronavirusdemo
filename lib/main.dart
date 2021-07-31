@@ -1,3 +1,4 @@
+import 'package:coronaliveupdate/screens/howToPreventScreen.dart';
 import 'package:coronaliveupdate/screens/navTestScreen.dart';
 import 'package:coronaliveupdate/screens/splashScreenOne.dart';
 import 'package:coronaliveupdate/screens/symptomsScreen.dart';
@@ -20,6 +21,7 @@ class App extends StatelessWidget {
       routes: {
         HomePage.id: (context) => HomePage(),
         SymptomsScreen.id: (context) => SymptomsScreen(),
+        HowToPreventScreen.id: (context) => HowToPreventScreen(),
         NavTest.id: (context) => NavTest(),
         NavTest2.id: (context) => NavTest2(),
         SplashScreenOne.id: (context) => SplashScreenOne(),

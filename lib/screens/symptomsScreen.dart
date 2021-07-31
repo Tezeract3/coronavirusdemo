@@ -1,5 +1,7 @@
 import 'package:coronaliveupdate/widget/animationWidget.dart';
+import 'package:coronaliveupdate/widget/buttons.dart';
 import 'package:coronaliveupdate/widget/coronaPicWidget.dart';
+import 'package:coronaliveupdate/widget/topPanel.dart';
 import 'package:flutter/material.dart';
 
 List<Map<String, String>> dataList = [
@@ -54,75 +56,9 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
               children: [
                 /// top panel
                 Positioned(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        ///back Button
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_back_ios_outlined,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18),
-                              )
-                            ],
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ///picture
-                            Flexible(
-                                child: Container(
-                              width: 200,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                  // color: Colors.red,
-                                  image: DecorationImage(
-                                      image: AssetImage("images/icons/man.png"),
-                                      fit: BoxFit.fitHeight)),
-                            )),
-
-                            ///title
-                            Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Symptoms of",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 25),
-                                  ),
-                                  Text(
-                                    "Covid-19",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 20),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
+                  child: TopPanel(
+                    image: "images/other/patient.png",
+                    title: "Symptoms of",
                   ),
                 ),
 
@@ -176,6 +112,39 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
                 )
               ],
             )),
+      ),
+    );
+  }
+}
+
+class TopPanel extends StatelessWidget {
+  final String image;
+  final String title;
+
+  const TopPanel({Key? key, required this.image, required this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          ///back Button
+          CustomBackButton(),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ///picture
+              CustomImage(image: image),
+
+              ///title
+              CustomTitle(title: title)
+            ],
+          )
+        ],
       ),
     );
   }
