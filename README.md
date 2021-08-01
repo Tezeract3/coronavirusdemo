@@ -1,4 +1,4 @@
-## Corona virus demo project
+## Project: Live update corona virus details 
 
 ### What is this project about?
 
