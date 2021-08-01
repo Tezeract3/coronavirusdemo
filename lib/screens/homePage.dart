@@ -1,7 +1,7 @@
-
 import 'dart:convert';
 
 import 'package:coronaliveupdate/entities/LiveCovidUpdate.dart';
+import 'package:coronaliveupdate/methods/searchBar.dart';
 
 import 'package:coronaliveupdate/screens/howToPreventScreen.dart';
 import 'package:coronaliveupdate/screens/symptomsScreen.dart';
@@ -92,10 +92,42 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 10, right: 10),
-                      child: SearchBar(),
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey,
+                      ),
+                      //  child: SearchBar(), ---------------------------------------------
+                      child: TextButton(
+                        onPressed: () async {
+                          var countryName = await showSearch(
+                            context: context,
+                            delegate: CountrySearch(),
+                          );
+                          print(countryName);
+                          setState(() {
+                            coronaLiveUpdate = fetchCoronaRes('$countryName');
+                            print('Inside the SetState :  $countryName');
+                          });
+                        },
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(left: 10, right: 10),
+                              child: Icon(Icons.search),
+                            ),
+                            Expanded(
+                              child: Text(
+                                'Search a country',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     //must add the dropdown box
                     FutureBuilder<LiveCovidUpdate>(
