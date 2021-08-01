@@ -44,7 +44,7 @@ class ExtraDetailWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      width: 200,
+                      width: 210,
                       padding: EdgeInsets.only(left: 25, top: 25, right: 25),
                       alignment: isImageOnLeft
                           ? Alignment.topRight
@@ -62,7 +62,7 @@ class ExtraDetailWidget extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 200,
+                      width: 210,
                       padding: EdgeInsets.only(left: 25, right: 25),
                       alignment: isImageOnLeft
                           ? Alignment.topRight

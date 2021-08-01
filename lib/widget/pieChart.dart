@@ -20,7 +20,7 @@ class PieChartWidget extends StatelessWidget {
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.grey,
+        color: Color(0xFFEFEFF0),
       ),
       child: Row(
         children: <Widget>[

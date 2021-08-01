@@ -45,6 +45,61 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         bottom: false,
+
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                child: ListView(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 200,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          ExtraDetailWidget(
+                            onTapReadMore: () {
+                              Navigator.pushNamed(
+                                  context, HowToPreventScreen.id);
+                            },
+                            heading: 'How to prevent',
+                            description: 'Covid-19',
+                            isImageOnLeft: false,
+                            imagePath: 'images/other/doctor.png',
+                          ),
+                          ExtraDetailWidget(
+                            onTapReadMore: () {
+                              Navigator.pushNamed(context, SymptomsScreen.id);
+                            },
+                            heading: 'Symptoms of',
+                            description: 'Covid-19',
+                            isImageOnLeft: true,
+                            imagePath: 'images/other/patient.png',
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 10, right: 10),
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(),
+                      ),
+                      child: TextButton(
+                        onPressed: () async {
+                          var countryName = await showSearch(
+                            context: context,
+                            delegate: CountrySearch(),
+                          );
+
         child: Stack(
           children: [
             Positioned(
@@ -110,6 +165,7 @@ class _HomePageState extends State<HomePage> {
                                 delegate: CountrySearch(),
                               );
 
+
                               Future<LiveCovidUpdate> coronaUpdate =
                                   fetchCoronaRes('$countryName');
 
@@ -123,15 +179,18 @@ class _HomePageState extends State<HomePage> {
                                   padding: EdgeInsets.only(left: 10, right: 10),
                                   child: Icon(Icons.search),
                                 ),
-                                Expanded(
-                                  child: Text(
-                                    'Search a country',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                )
-                              ],
-                            ),
+                                
+
+                            Expanded(
+                              child: Text(
+                                'Search a country',
+                                style: TextStyle(color: Color(0xFF848488)),
+                              ),
+                            )
+                          ],
+
                           ),
+
                         ),
                         SizedBox(
                           height: 20,
