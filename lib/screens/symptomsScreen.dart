@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 List<Map<String, String>> dataList = [
   {
-    "symptom": "Heigh Fever",
+    "symptom": "Fever or chills",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
@@ -16,17 +16,17 @@ List<Map<String, String>> dataList = [
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
   {
-    "symptom": "Heigh Fever",
+    "symptom": "Shortness of breath or difficulty",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
   {
-    "symptom": "Heigh Fever",
+    "symptom": "Fatigue",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
   {
-    "symptom": "Heigh Fever",
+    "symptom": "Muscle or body aches",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },

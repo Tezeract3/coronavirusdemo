@@ -40,7 +40,11 @@ class _AnimationWidgetState extends State<AnimationWidget> {
                 isSelected ? widget.dataContainerHeight : widget.labelHeight,
             child: isSelected
                 ? Container(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                    padding: EdgeInsets.only(
+                        bottom: 20,
+                        left: 20,
+                        right: 20,
+                        top: widget.labelHeight),
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       widget.data,
