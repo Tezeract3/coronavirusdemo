@@ -1,7 +1,8 @@
 import 'package:coronaliveupdate/widget/animationWidget.dart';
-import 'package:coronaliveupdate/widget/buttons.dart';
+import 'package:coronaliveupdate/widget/customBackButton.dart';
 import 'package:coronaliveupdate/widget/backgroundImageWidget.dart';
-import 'package:coronaliveupdate/widget/topPanel.dart';
+import 'package:coronaliveupdate/widget/customImage.dart';
+import 'package:coronaliveupdate/widget/customTitle.dart';
 import 'package:flutter/material.dart';
 
 List<Map<String, String>> dataList = [
@@ -64,7 +65,6 @@ class _HowToPreventScreenState extends State<HowToPreventScreen> {
                           topRight: Radius.circular(15))),
                   child: Stack(
                     children: [
-                      ///corona
                       Positioned(
                         top: 20,
                         left: -40,
@@ -73,20 +73,20 @@ class _HowToPreventScreenState extends State<HowToPreventScreen> {
                           opacity: 0.5,
                         ),
                       ),
-
-                      ///list body
                       Positioned.fill(
-                          child: Container(
-                        margin: EdgeInsets.only(top: 50, left: 20, right: 20),
-                        child: ListView.builder(
+                        child: Container(
+                          margin: EdgeInsets.only(top: 50, left: 20, right: 20),
+                          child: ListView.builder(
                             itemCount: dataList.length,
                             itemBuilder: (context, i) {
                               return AnimationWidget(
                                 data: dataList[i]["data"].toString(),
                                 title: dataList[i]["title"].toString(),
                               );
-                            }),
-                      )),
+                            },
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -122,10 +122,7 @@ class TopPanel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ///title
               CustomTitle(title: title),
-
-              ///picture
               CustomImage(image: image),
             ],
           )

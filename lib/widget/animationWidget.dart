@@ -23,15 +23,19 @@ class _AnimationWidgetState extends State<AnimationWidget> {
   @override
   Widget build(BuildContext context) {
     Container text = Container(
-        key: GlobalKey(),
-        padding: EdgeInsets.only(
-            bottom: 20, left: 20, right: 20, top: widget.labelHeight),
-        alignment: Alignment.bottomLeft,
+      key: GlobalKey(),
+      padding: EdgeInsets.only(
+          bottom: 20, left: 20, right: 20, top: widget.labelHeight),
+      alignment: Alignment.bottomLeft,
+      child: Container(
+        margin: EdgeInsets.only(top: 10),
         child: Text(
           widget.data,
           textAlign: TextAlign.start,
-          style: TextStyle(fontSize: 15),
-        ));
+          style: TextStyle(fontSize: 16),
+        ),
+      ),
+    );
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -68,20 +72,21 @@ class _AnimationWidgetState extends State<AnimationWidget> {
                       fontWeight: FontWeight.w500),
                 ),
                 IconButton(
-                    onPressed: () {
-                      isSelected = isSelected ? false : true;
+                  onPressed: () {
+                    isSelected = isSelected ? false : true;
 
-                      setState(() {});
-                    },
-                    icon: isSelected
-                        ? Icon(
-                            Icons.keyboard_arrow_up_rounded,
-                            color: Colors.white,
-                          )
-                        : Icon(
-                            Icons.keyboard_arrow_down_outlined,
-                            color: Colors.white,
-                          ))
+                    setState(() {});
+                  },
+                  icon: isSelected
+                      ? Icon(
+                          Icons.keyboard_arrow_up_rounded,
+                          color: Colors.white,
+                        )
+                      : Icon(
+                          Icons.keyboard_arrow_down_outlined,
+                          color: Colors.white,
+                        ),
+                )
               ],
             ),
           ),

@@ -71,22 +71,21 @@ class _ListScreenState extends State<ListScreen> {
         bottom: false,
         child: Stack(
           children: [
-            ///corona
             Positioned(
-                bottom: 110,
-                child: BackgroundImageWidget(
-                  opacity: 0.3,
-                  size: 100,
-                )),
-
-            ///corona
+              bottom: 110,
+              child: BackgroundImageWidget(
+                opacity: 0.3,
+                size: 100,
+              ),
+            ),
             Positioned(
-                top: 100,
-                right: -50,
-                child: BackgroundImageWidget(
-                  opacity: 0.3,
-                  size: MediaQuery.of(context).size.shortestSide * 0.6,
-                )),
+              top: 100,
+              right: -50,
+              child: BackgroundImageWidget(
+                opacity: 0.3,
+                size: MediaQuery.of(context).size.shortestSide * 0.6,
+              ),
+            ),
             Positioned(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,

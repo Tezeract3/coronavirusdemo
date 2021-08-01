@@ -1,9 +1,7 @@
 import 'package:coronaliveupdate/screens/howToPreventScreen.dart';
 import 'package:coronaliveupdate/screens/listScreen.dart';
-import 'package:coronaliveupdate/screens/splashScreenOne.dart';
 import 'package:coronaliveupdate/screens/symptomsScreen.dart';
 import 'package:flutter/material.dart';
-
 import 'screens/homePage.dart';
 
 void main() {
@@ -23,7 +21,6 @@ class App extends StatelessWidget {
         SymptomsScreen.id: (context) => SymptomsScreen(),
         HowToPreventScreen.id: (context) => HowToPreventScreen(),
         ListScreen.id: (context) => ListScreen(),
-        SplashScreenOne.id: (context) => SplashScreenOne(),
       },
     );
   }

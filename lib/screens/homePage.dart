@@ -2,13 +2,11 @@ import 'dart:convert';
 
 import 'package:coronaliveupdate/entities/LiveCovidUpdate.dart';
 import 'package:coronaliveupdate/methods/searchBar.dart';
-import 'package:coronaliveupdate/screens/howToPreventScreen.dart';
-import 'package:coronaliveupdate/screens/symptomsScreen.dart';
 import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
 import 'package:coronaliveupdate/widget/coronaLiveUpdateWidget.dart';
 import 'package:coronaliveupdate/widget/backgroundImageWidget.dart';
-import 'package:coronaliveupdate/widget/extraDetailWidget.dart';
-import 'package:coronaliveupdate/widget/pieChart.dart';
+import 'package:coronaliveupdate/widget/extraDetailListWidget.dart';
+import 'package:coronaliveupdate/widget/pieChartWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -70,34 +68,7 @@ class _HomePageState extends State<HomePage> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                Container(
-                                  height: 200,
-                                  child: ListView(
-                                    scrollDirection: Axis.horizontal,
-                                    children: [
-                                      ExtraDetailWidget(
-                                        onTapReadMore: () {
-                                          Navigator.pushNamed(
-                                              context, HowToPreventScreen.id);
-                                        },
-                                        heading: 'How to prevenr',
-                                        description: 'Covid-19',
-                                        isImageOnLeft: false,
-                                        imagePath: 'images/other/doctor.png',
-                                      ),
-                                      ExtraDetailWidget(
-                                        onTapReadMore: () {
-                                          Navigator.pushNamed(
-                                              context, SymptomsScreen.id);
-                                        },
-                                        heading: 'Symptoms of',
-                                        description: 'Covid-19',
-                                        isImageOnLeft: true,
-                                        imagePath: 'images/other/patient.png',
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                ExtraDetailListWidget(),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -143,7 +114,6 @@ class _HomePageState extends State<HomePage> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                //must add the dropdown box
                                 FutureBuilder<LiveCovidUpdate>(
                                   future: coronaLiveUpdate,
                                   builder: (context, snapshot) {
@@ -229,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         BottomNavBar(
                           status: NavStatus.Home,
-                        )
+                        ),
                       ],
                     ),
                   ],

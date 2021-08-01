@@ -1,7 +1,8 @@
 import 'package:coronaliveupdate/widget/animationWidget.dart';
-import 'package:coronaliveupdate/widget/buttons.dart';
+import 'package:coronaliveupdate/widget/customBackButton.dart';
 import 'package:coronaliveupdate/widget/backgroundImageWidget.dart';
-import 'package:coronaliveupdate/widget/topPanel.dart';
+import 'package:coronaliveupdate/widget/customImage.dart';
+import 'package:coronaliveupdate/widget/customTitle.dart';
 import 'package:flutter/material.dart';
 
 List<Map<String, String>> dataList = [
@@ -49,70 +50,69 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
       body: SafeArea(
         bottom: false,
         child: Container(
-            padding: EdgeInsets.only(top: 10),
-            width: double.maxFinite,
-            height: double.maxFinite,
-            child: Stack(
-              // mainAxisSize: MainAxisSize.max,
-              children: [
-                /// top panel
-                Positioned(
-                  child: TopPanel(
-                    image: "images/other/patient.png",
-                    title: "Symptoms of",
-                  ),
+          padding: EdgeInsets.only(top: 10),
+          width: double.maxFinite,
+          height: double.maxFinite,
+          child: Stack(
+            children: [
+              /// top panel
+              Positioned(
+                child: TopPanel(
+                  image: "images/other/patient.png",
+                  title: "Symptoms of",
                 ),
+              ),
 
-                ///bottom panel
-                Positioned.fill(
-                  top: 220,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            topRight: Radius.circular(15))),
-                    child: Stack(
-                      children: [
-                        ///corona
-                        Positioned(
-                          bottom: -60,
-                          left: -80,
-                          child: BackgroundImageWidget(
-                            size: MediaQuery.of(context).size.width * 0.55,
-                            opacity: 0.5,
-                          ),
+              ///bottom panel
+              Positioned.fill(
+                top: 220,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15))),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        bottom: -60,
+                        left: -80,
+                        child: BackgroundImageWidget(
+                          size: MediaQuery.of(context).size.width * 0.55,
+                          opacity: 0.5,
                         ),
-
-                        ///corona
-                        Positioned(
-                          top: 130,
-                          right: -90,
-                          child: BackgroundImageWidget(
-                            size: MediaQuery.of(context).size.width * 0.55,
-                            opacity: 0.5,
-                          ),
+                      ),
+                      Positioned(
+                        top: 130,
+                        right: -90,
+                        child: BackgroundImageWidget(
+                          size: MediaQuery.of(context).size.width * 0.55,
+                          opacity: 0.5,
                         ),
+                      ),
 
-                        ///list body
-                        Positioned.fill(
-                            child: Container(
+                      ///list body
+                      Positioned.fill(
+                        child: Container(
                           margin: EdgeInsets.only(top: 50, left: 20, right: 20),
                           child: ListView.builder(
-                              itemCount: dataList.length,
-                              itemBuilder: (context, i) {
-                                return AnimationWidget(
-                                  data: dataList[i]["data"].toString(),
-                                  title: dataList[i]["symptom"].toString(),
-                                );
-                              }),
-                        )),
-                      ],
-                    ),
+                            itemCount: dataList.length,
+                            itemBuilder: (context, i) {
+                              return AnimationWidget(
+                                data: dataList[i]["data"].toString(),
+                                title: dataList[i]["symptom"].toString(),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                )
-              ],
-            )),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -137,13 +137,7 @@ class TopPanel extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ///picture
-              CustomImage(image: image),
-
-              ///title
-              CustomTitle(title: title)
-            ],
+            children: [CustomImage(image: image), CustomTitle(title: title)],
           )
         ],
       ),
