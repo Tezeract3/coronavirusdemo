@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 class AnimationWidget extends StatefulWidget {
   final String title;
   final String data;
-  final double dataContainerHeight;
+
   final double labelHeight;
 
   const AnimationWidget(
       {Key? key,
       required this.title,
       required this.data,
-      this.dataContainerHeight = 180,
       this.labelHeight = 70})
       : super(key: key);
 
@@ -20,40 +19,36 @@ class AnimationWidget extends StatefulWidget {
 
 class _AnimationWidgetState extends State<AnimationWidget> {
   bool isSelected = false;
+
   @override
   Widget build(BuildContext context) {
+    Container text = Container(
+        key: GlobalKey(),
+        padding: EdgeInsets.only(
+            bottom: 20, left: 20, right: 20, top: widget.labelHeight),
+        alignment: Alignment.bottomLeft,
+        child: Text(
+          widget.data,
+          textAlign: TextAlign.start,
+          style: TextStyle(fontSize: 15),
+        ));
+
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Stack(
         children: [
-          ///label and button
-
           ///animation data container
           AnimatedContainer(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Color(0xffB6C4F1),
             ),
-            duration: Duration(milliseconds: 400),
-            width: double.maxFinite - 20,
-            height:
-                isSelected ? widget.dataContainerHeight : widget.labelHeight,
-            child: isSelected
-                ? Container(
-                    padding: EdgeInsets.only(
-                        bottom: 20,
-                        left: 20,
-                        right: 20,
-                        top: widget.labelHeight),
-                    alignment: Alignment.bottomLeft,
-                    child: Text(
-                      widget.data,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  )
-                : Container(),
+            duration: Duration(milliseconds: 500),
+            width: double.maxFinite,
+            child: isSelected ? text : null,
           ),
+
+          ///label and button
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             width: double.maxFinite,
