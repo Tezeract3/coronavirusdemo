@@ -1,5 +1,5 @@
 import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
-import 'package:coronaliveupdate/widget/coronaPicWidget.dart';
+import 'package:coronaliveupdate/widget/backgroundImageWidget.dart';
 import 'package:flutter/material.dart';
 
 List<Map<String, String>> data = [
@@ -74,7 +74,7 @@ class _ListScreenState extends State<ListScreen> {
             ///corona
             Positioned(
                 bottom: 110,
-                child: CoronaPicWidget(
+                child: BackgroundImageWidget(
                   opacity: 0.3,
                   size: 100,
                 )),
@@ -83,7 +83,7 @@ class _ListScreenState extends State<ListScreen> {
             Positioned(
                 top: 100,
                 right: -50,
-                child: CoronaPicWidget(
+                child: BackgroundImageWidget(
                   opacity: 0.3,
                   size: MediaQuery.of(context).size.shortestSide * 0.6,
                 )),
@@ -92,9 +92,9 @@ class _ListScreenState extends State<ListScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Expanded(
-                      child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
-                    child: ListView.builder(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+                      child: ListView.builder(
                         itemCount: data.length,
                         itemBuilder: (context, i) {
                           return Container(
@@ -128,8 +128,10 @@ class _ListScreenState extends State<ListScreen> {
                               ],
                             ),
                           );
-                        }),
-                  )),
+                        },
+                      ),
+                    ),
+                  ),
 
                   ///bottom bar
                   BottomNavBar(

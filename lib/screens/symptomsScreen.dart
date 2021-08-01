@@ -1,6 +1,6 @@
 import 'package:coronaliveupdate/widget/animationWidget.dart';
 import 'package:coronaliveupdate/widget/buttons.dart';
-import 'package:coronaliveupdate/widget/coronaPicWidget.dart';
+import 'package:coronaliveupdate/widget/backgroundImageWidget.dart';
 import 'package:coronaliveupdate/widget/topPanel.dart';
 import 'package:flutter/material.dart';
 

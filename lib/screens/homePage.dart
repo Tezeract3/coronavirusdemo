@@ -6,7 +6,7 @@ import 'package:coronaliveupdate/screens/howToPreventScreen.dart';
 import 'package:coronaliveupdate/screens/symptomsScreen.dart';
 import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
 import 'package:coronaliveupdate/widget/coronaLiveUpdateWidget.dart';
-import 'package:coronaliveupdate/widget/coronaPicWidget.dart';
+import 'package:coronaliveupdate/widget/backgroundImageWidget.dart';
 import 'package:coronaliveupdate/widget/extraDetailWidget.dart';
 import 'package:coronaliveupdate/widget/pieChart.dart';
 import 'package:flutter/cupertino.dart';

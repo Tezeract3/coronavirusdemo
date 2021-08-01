@@ -1,5 +1,5 @@
 import 'package:coronaliveupdate/screens/homePage.dart';
-import 'package:coronaliveupdate/widget/coronaPicWidget.dart';
+import 'package:coronaliveupdate/widget/backgroundImageWidget.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenOne extends StatelessWidget {
