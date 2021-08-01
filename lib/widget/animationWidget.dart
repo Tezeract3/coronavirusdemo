@@ -10,7 +10,7 @@ class AnimationWidget extends StatefulWidget {
       {Key? key,
       required this.title,
       required this.data,
-      this.dataContainerHeight = 170,
+      this.dataContainerHeight = 180,
       this.labelHeight = 70})
       : super(key: key);
 
