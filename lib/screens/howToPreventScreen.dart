@@ -6,27 +6,28 @@ import 'package:flutter/material.dart';
 
 List<Map<String, String>> dataList = [
   {
-    "symptom": "Wash your hands",
+    "title": "Clean your hands",
+    "data":
+        "Clean your hands before you put your mask on, as well as before and after you take it off, and after you touch it at any time."
+  },
+  {
+    "title": "Wear a mask",
+    "data":
+        "when physical distancing is not possible ware a mask and Make sure it covers both your nose, mouth and chin." +
+            "When you take off a mask, store it in a clean plastic bag."
+  },
+  {
+    "title": "Stay home if you feel unwell",
+    "data":
+        "if you have minor symptoms such as cough, headache, mild fever, until you recover. Call your health care provider. Have someone bring you supplies."
+  },
+  {
+    "title": "Heigh Fever",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
   {
-    "symptom": "Use Hand sanitizers",
-    "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
-  },
-  {
-    "symptom": "Heigh Fever",
-    "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
-  },
-  {
-    "symptom": "Heigh Fever",
-    "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
-  },
-  {
-    "symptom": "Heigh Fever",
+    "title": "Heigh Fever",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
@@ -58,7 +59,7 @@ class _HowToPreventScreenState extends State<HowToPreventScreen> {
               Positioned(
                 child: TopPanel(
                   image: "images/other/doctor.png",
-                  title: "Symptoms of",
+                  title: "How to prevent",
                 ),
               ),
 
@@ -92,7 +93,7 @@ class _HowToPreventScreenState extends State<HowToPreventScreen> {
                             itemBuilder: (context, i) {
                               return AnimationWidget(
                                 data: dataList[i]["data"].toString(),
-                                title: dataList[i]["symptom"].toString(),
+                                title: dataList[i]["title"].toString(),
                               );
                             }),
                       )),
