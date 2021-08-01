@@ -21,16 +21,6 @@ List<Map<String, String>> dataList = [
     "data":
         "if you have minor symptoms such as cough, headache, mild fever, until you recover. Call your health care provider. Have someone bring you supplies."
   },
-  {
-    "title": "Heigh Fever",
-    "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
-  },
-  {
-    "title": "Heigh Fever",
-    "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
-  },
 ];
 
 class HowToPreventScreen extends StatefulWidget {

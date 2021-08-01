@@ -6,29 +6,30 @@ import 'package:flutter/material.dart';
 
 List<Map<String, String>> dataList = [
   {
-    "symptom": "Fever or chills",
+    "symptom": "Fever",
     "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
+        "Fever is a common symptom of COVID-19, but the actual number of cases is unknown. Fever was the most prevalent symptom"
   },
   {
     "symptom": "Dry Couch",
     "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
+        "this means coughing a lot for more than an hour, or 3 or more coughing episodes in 24 hours (if you usually have a cough, it may be worse than usual)"
   },
   {
-    "symptom": "Breath or difficulty",
+    "symptom": "Shortness of breath",
     "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
+        "Shortness of breath can make it hard to breathe. It can leave you gasping for air." +
+            "Your chest may feel too tight to inhale or exhale fully. "
   },
   {
     "symptom": "Fatigue",
     "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
+        "Even though fatigue is a less well-known symptom of COVID-19, it’s one of the early signs of the disease and more common than the ‘classic’ symptoms of cough, fever and loss of smell (anosmia)."
   },
   {
     "symptom": "Muscle or body aches",
     "data":
-        "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
+        "COVID-related muscle pains can range from being mild to quite debilitating, especially when they occur alongside fatigue. For some people, this muscle pain stops them from doing day-to-day tasks."
   },
 ];
 
