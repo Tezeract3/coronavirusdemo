@@ -26,26 +26,3 @@ class _NavTestState extends State<NavTest> {
     );
   }
 }
-
-class NavTest2 extends StatefulWidget {
-  static const String id = "NavTest2";
-  @override
-  _NavTest2State createState() => _NavTest2State();
-}
-
-class _NavTest2State extends State<NavTest2> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          BottomNavBar(
-            status: NavStatus.Profile,
-          )
-        ],
-      ),
-    );
-  }
-}

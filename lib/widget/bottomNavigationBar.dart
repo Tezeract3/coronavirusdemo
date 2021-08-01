@@ -1,5 +1,5 @@
-import 'package:coronaliveupdate/screens/navTestScreen.dart';
 import 'package:coronaliveupdate/screens/homePage.dart';
+import 'package:coronaliveupdate/screens/navTestScreen.dart';
 import 'package:flutter/material.dart';
 
 List<BoxShadow> bottomNavBarShadow = [
@@ -11,7 +11,7 @@ List<BoxShadow> bottomNavBarShadow = [
   )
 ];
 
-enum NavStatus { Profile, Home, File }
+enum NavStatus { Home, File }
 
 double verticalPadding = 10;
 double horisontalPadding = 20;
@@ -19,30 +19,25 @@ double horisontalPadding = 20;
 class BottomNavBar extends StatefulWidget {
   final NavStatus status;
 
-  BottomNavBar({Key? key, this.status = NavStatus.Profile}) : super(key: key);
+  BottomNavBar({Key? key, this.status = NavStatus.Home}) : super(key: key);
 
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  List<bool> select = [false, false, false];
+  List<bool> select = [false, false];
   void changeStatus() {
-    select = [false, false, false];
+    select = [false, false];
     switch (widget.status) {
-      case NavStatus.Profile:
+      case NavStatus.Home:
         {
           select[0] = true;
         }
         break;
-      case NavStatus.Home:
-        {
-          select[1] = true;
-        }
-        break;
       case NavStatus.File:
         {
-          select[2] = true;
+          select[1] = true;
         }
         break;
     }
@@ -71,25 +66,21 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           NavButton(
-            image: "images/icons/userIcon.png",
-            isSelected: select[0],
-            onTap: () {
-              Navigator.popAndPushNamed(context, NavTest2.id);
-            },
-          ),
-          NavButton(
             image: "images/icons/homeIcon.png",
-            isSelected: select[1],
+            isSelected: select[0],
             onTap: () {
               Navigator.popAndPushNamed(context, HomePage.id);
             },
           ),
+          SizedBox(
+            width: 50,
+          ),
           NavButton(
             image: "images/icons/textIcon.png",
-            isSelected: select[2],
+            isSelected: select[1],
             onTap: () {
               Navigator.popAndPushNamed(context, NavTest.id);
             },
