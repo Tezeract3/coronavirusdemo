@@ -1,20 +1,16 @@
-
-import 'dart:convert';
-
-import 'package:coronaliveupdate/entities/LiveCovidUpdate.dart';
-
-import 'package:coronaliveupdate/screens/howToPreventScreen.dart';
-import 'package:coronaliveupdate/screens/symptomsScreen.dart';
-import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
-
-import 'package:coronaliveupdate/widget/extraDetailWidget.dart';
-import 'package:coronaliveupdate/widget/liveUpdateWidget.dart';
-import 'package:coronaliveupdate/widget/pieChart.dart';
-import 'package:coronaliveupdate/widget/searchBarWidget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:coronaliveupdate/widget/coronaLiveUpdateWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:coronaliveupdate/entities/LiveCovidUpdate.dart';
+import 'package:coronaliveupdate/methods/searchBar.dart';
+import 'package:coronaliveupdate/screens/howToPreventScreen.dart';
+import 'package:coronaliveupdate/screens/symptomsScreen.dart';
+import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
+import 'package:coronaliveupdate/widget/extraDetailWidget.dart';
+import 'package:coronaliveupdate/widget/pieChart.dart';
+import 'package:flutter/cupertino.dart';
 
 Future<LiveCovidUpdate> fetchCoronaRes(String country) async {
   final response =
@@ -34,12 +30,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // late Future<LiveCovidUpdate> coronaLiveUpdate;
   late Future<LiveCovidUpdate> coronaLiveUpdate;
 
   @override
   void initState() {
-    //coronaLiveUpdate = GetCoronaDetails.getLiveCoronaUpdate('World');
     super.initState();
     coronaLiveUpdate = fetchCoronaRes('World');
   }
@@ -59,7 +53,6 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       height: 10,
                     ),
-
                     Container(
                       height: 200,
                       child: ListView(
@@ -92,25 +85,78 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 10, right: 10),
-                      child: SearchBar(),
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey,
+                      ),
+                      child: TextButton(
+                        onPressed: () async {
+                          var countryName = await showSearch(
+                            context: context,
+                            delegate: CountrySearch(),
+                          );
+
+                          Future<LiveCovidUpdate> coronaUpdate =
+                              fetchCoronaRes('$countryName');
+
+                          setState(() {
+                            coronaLiveUpdate = coronaUpdate;
+                          });
+                        },
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(left: 10, right: 10),
+                              child: Icon(Icons.search),
+                            ),
+                            Expanded(
+                              child: Text(
+                                'Search a country',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     //must add the dropdown box
                     FutureBuilder<LiveCovidUpdate>(
                       future: coronaLiveUpdate,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.done) {
-                          double confirmCountInt = double.parse(
-                              snapshot.data!.totalCases.replaceAll(',', ''));
-                          double activeCountInt = double.parse(
-                              snapshot.data!.activeCases.replaceAll(',', ''));
-                          double deathCountInt = double.parse(
-                              snapshot.data!.totalDeaths.replaceAll(',', ''));
-                          double recoveredCountInt = double.parse(snapshot
-                              .data!.totalRecovered
-                              .replaceAll(',', ''));
+                          double confirmCountInt =
+                              snapshot.data!.totalCases.isEmpty
+                                  ? 0.0
+                                  : double.parse(snapshot.data!.totalCases
+                                      .replaceAll(',', '')
+                                      .replaceAll('+', ''));
+
+                          double activeCountInt =
+                              snapshot.data!.activeCases.isEmpty ||
+                                      snapshot.data!.activeCases == 'N/A'
+                                  ? 0.0
+                                  : double.parse(snapshot.data!.activeCases
+                                      .replaceAll(',', '')
+                                      .replaceAll('+', ''));
+
+                          double deathCountInt =
+                              snapshot.data!.totalDeaths.isEmpty
+                                  ? 0.0
+                                  : double.parse(snapshot.data!.totalDeaths
+                                      .replaceAll(',', '')
+                                      .replaceAll('+', ''));
+
+                          double recoveredCountInt =
+                              snapshot.data!.totalRecovered.isEmpty ||
+                                      snapshot.data!.totalRecovered == 'N/A'
+                                  ? 0.0
+                                  : double.parse(snapshot.data!.totalRecovered
+                                      .replaceAll(',', '')
+                                      .replaceAll('+', ''));
 
                           return Column(
                             children: [
@@ -124,8 +170,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                               PieChartWidget(
                                 confirmCount: confirmCountInt,
-                                dethCount: activeCountInt,
-                                activeCount: deathCountInt,
+                                dethCount: deathCountInt,
+                                activeCount: activeCountInt,
                                 recoverdCount: recoveredCountInt,
                               ),
                             ],
@@ -143,132 +189,6 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class CoronaLiveUpdateContainer extends StatelessWidget {
-  const CoronaLiveUpdateContainer(
-      {required this.activeCases,
-      required this.lastUpdateDate,
-      required this.totalConfirmed,
-      required this.totalDeaths,
-      required this.totalRecovered,
-      required this.country});
-
-  final String totalConfirmed;
-  final String totalDeaths;
-  final String activeCases;
-  final String totalRecovered;
-  final String lastUpdateDate;
-  final String country;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 420,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 40,
-                  width: double.infinity,
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0xFF4B6BDB),
-                  ),
-                  child: Text(
-                    'Country: $country',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: LiveUpdateDetailWidget(
-                  headline: 'Confirmed',
-                  value: '$totalConfirmed+',
-                  color: Color(0xFF4AB6FF),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: LiveUpdateDetailWidget(
-                  headline: 'Deaths',
-                  value: '$totalDeaths+',
-                  color: Color(0xFFFF5959),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: LiveUpdateDetailWidget(
-                  headline: 'Active',
-                  value: '$activeCases+',
-                  color: Color(0xFFFFBD4D),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: LiveUpdateDetailWidget(
-                  headline: 'Recovered',
-                  value: '$totalRecovered+',
-                  color: Color(0xFF4CD979),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 40,
-                  width: double.infinity,
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0xFF4B6BDB),
-                  ),
-                  child: Text(
-                    'Last updated: $lastUpdateDate',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          )
-        ],
       ),
     );
   }
