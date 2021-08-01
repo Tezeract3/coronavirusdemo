@@ -63,8 +63,8 @@ class _HomePageState extends State<HomePage> {
                               Navigator.pushNamed(
                                   context, HowToPreventScreen.id);
                             },
-                            heading: 'Heading 1',
-                            description: 'Description 1',
+                            heading: 'How to prevent',
+                            description: 'Covid-19',
                             isImageOnLeft: false,
                             imagePath: 'images/other/doctor.png',
                           ),
@@ -72,8 +72,8 @@ class _HomePageState extends State<HomePage> {
                             onTapReadMore: () {
                               Navigator.pushNamed(context, SymptomsScreen.id);
                             },
-                            heading: 'Heading 1',
-                            description: 'Description 2',
+                            heading: 'Symptoms of',
+                            description: 'Covid-19',
                             isImageOnLeft: true,
                             imagePath: 'images/other/patient.png',
                           ),
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey,
+                        border: Border.all(),
                       ),
                       child: TextButton(
                         onPressed: () async {
@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                             Expanded(
                               child: Text(
                                 'Search a country',
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Color(0xFF848488)),
                               ),
                             )
                           ],

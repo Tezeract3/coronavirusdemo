@@ -244,7 +244,7 @@ class CountrySearch extends SearchDelegate<String> {
     return IconButton(
       icon: Icon(Icons.arrow_back),
       onPressed: () {
-        close(context, query);
+        close(context, 'World');
       },
     );
   }
