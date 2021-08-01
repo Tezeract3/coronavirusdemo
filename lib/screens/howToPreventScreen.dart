@@ -68,7 +68,7 @@ class _HowToPreventScreenState extends State<HowToPreventScreen> {
                       Positioned(
                         top: 20,
                         left: -40,
-                        child: CoronaPicWidget(
+                        child: BackgroundImageWidget(
                           size: MediaQuery.of(context).size.width * 0.35,
                           opacity: 0.5,
                         ),

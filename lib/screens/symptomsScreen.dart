@@ -78,7 +78,7 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
                         Positioned(
                           bottom: -60,
                           left: -80,
-                          child: CoronaPicWidget(
+                          child: BackgroundImageWidget(
                             size: MediaQuery.of(context).size.width * 0.55,
                             opacity: 0.5,
                           ),
@@ -88,7 +88,7 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
                         Positioned(
                           top: 130,
                           right: -90,
-                          child: CoronaPicWidget(
+                          child: BackgroundImageWidget(
                             size: MediaQuery.of(context).size.width * 0.55,
                             opacity: 0.5,
                           ),

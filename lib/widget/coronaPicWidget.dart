@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CoronaPicWidget extends StatelessWidget {
+class BackgroundImageWidget extends StatelessWidget {
   final double size;
   final double opacity;
 
-  const CoronaPicWidget({Key? key, this.size = 60, this.opacity = 1})
+  const BackgroundImageWidget({Key? key, this.size = 60, this.opacity = 1})
       : super(key: key);
 
   @override

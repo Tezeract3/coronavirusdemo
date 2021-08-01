@@ -22,7 +22,7 @@ class SplashScreenOne extends StatelessWidget {
             Positioned(
               top: size.height * 0.1,
               right: -(size.width * 0.5) / 2,
-              child: CoronaPicWidget(
+              child: BackgroundImageWidget(
                 opacity: 0.2,
                 size: size.width * 0.7,
               ),
@@ -32,7 +32,7 @@ class SplashScreenOne extends StatelessWidget {
             Positioned(
                 bottom: size.height * 0.2,
                 left: -50,
-                child: CoronaPicWidget(
+                child: BackgroundImageWidget(
                   opacity: 0.2,
                   size: size.width * 0.35,
                 )),
@@ -41,7 +41,7 @@ class SplashScreenOne extends StatelessWidget {
             Positioned(
               bottom: 0,
               right: size.width * 0.3,
-              child: CoronaPicWidget(),
+              child: BackgroundImageWidget(),
             ),
             Positioned.fill(
               child: BodyContainer(),
