@@ -1,4 +1,3 @@
-import 'package:coronaliveupdate/screens/symptomsScreen.dart';
 import 'package:flutter/material.dart';
 
 class ExtraDetailWidget extends StatelessWidget {
@@ -7,12 +6,14 @@ class ExtraDetailWidget extends StatelessWidget {
     required this.heading,
     required this.isImageOnLeft,
     required this.imagePath,
+    required this.onTapReadMore,
   });
 
   final String heading;
   final String description;
   final bool isImageOnLeft;
   final String imagePath;
+  final Function onTapReadMore;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +98,7 @@ class ExtraDetailWidget extends StatelessWidget {
             left: isImageOnLeft ? 200.0 : 100.0,
             child: TextButton(
               onPressed: () {
-                Navigator.popAndPushNamed(context, SymptomsScreen.id);
+                onTapReadMore();
               },
               child: Container(
                 child: Row(

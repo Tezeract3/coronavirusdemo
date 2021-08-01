@@ -19,7 +19,7 @@ class _NavTestState extends State<NavTest> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           BottomNavBar(
-            status: NavStatus.Home,
+            status: NavStatus.File,
           )
         ],
       ),
