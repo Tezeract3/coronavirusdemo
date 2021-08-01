@@ -16,7 +16,7 @@ List<Map<String, String>> dataList = [
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
   {
-    "symptom": "Shortness of breath or difficulty",
+    "symptom": "Breath or difficulty",
     "data":
         "janindu data data data data data data data data data data data data data data data data data data data data data data data data data data data "
   },
