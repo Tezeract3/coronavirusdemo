@@ -23,7 +23,6 @@ class App extends StatelessWidget {
         SymptomsScreen.id: (context) => SymptomsScreen(),
         HowToPreventScreen.id: (context) => HowToPreventScreen(),
         NavTest.id: (context) => NavTest(),
-        NavTest2.id: (context) => NavTest2(),
         SplashScreenOne.id: (context) => SplashScreenOne(),
       },
     );
