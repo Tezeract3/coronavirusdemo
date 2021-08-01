@@ -1,6 +1,12 @@
+
+import 'dart:convert';
+
+import 'package:coronaliveupdate/entities/LiveCovidUpdate.dart';
+
 import 'package:coronaliveupdate/screens/howToPreventScreen.dart';
 import 'package:coronaliveupdate/screens/symptomsScreen.dart';
 import 'package:coronaliveupdate/widget/bottomNavigationBar.dart';
+
 import 'package:coronaliveupdate/widget/extraDetailWidget.dart';
 import 'package:coronaliveupdate/widget/liveUpdateWidget.dart';
 import 'package:coronaliveupdate/widget/pieChart.dart';
@@ -8,6 +14,18 @@ import 'package:coronaliveupdate/widget/searchBarWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:http/http.dart' as http;
+
+Future<LiveCovidUpdate> fetchCoronaRes(String country) async {
+  final response =
+      await http.get(Uri.parse('https://covid-19.dataflowkit.com/v1/$country'));
+
+  if (response.statusCode == 200) {
+    return LiveCovidUpdate.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to load album');
+  }
+}
 
 class HomePage extends StatefulWidget {
   static const String id = "HomePage";
@@ -16,6 +34,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // late Future<LiveCovidUpdate> coronaLiveUpdate;
+  late Future<LiveCovidUpdate> coronaLiveUpdate;
+
+  @override
+  void initState() {
+    //coronaLiveUpdate = GetCoronaDetails.getLiveCoronaUpdate('World');
+    super.initState();
+    coronaLiveUpdate = fetchCoronaRes('World');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,89 +98,41 @@ class _HomePageState extends State<HomePage> {
                       height: 30,
                     ),
                     //must add the dropdown box
-                    Container(
-                      height: 360,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                flex: 1,
-                                child: LiveUpdateDetailWidget(
-                                  headline: 'Headline 1',
-                                  value: 'value 1',
-                                  color: Color(0xFF4AB6FF),
-                                ),
+                    FutureBuilder<LiveCovidUpdate>(
+                      future: coronaLiveUpdate,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          double confirmCountInt = double.parse(
+                              snapshot.data!.totalCases.replaceAll(',', ''));
+                          double activeCountInt = double.parse(
+                              snapshot.data!.activeCases.replaceAll(',', ''));
+                          double deathCountInt = double.parse(
+                              snapshot.data!.totalDeaths.replaceAll(',', ''));
+                          double recoveredCountInt = double.parse(snapshot
+                              .data!.totalRecovered
+                              .replaceAll(',', ''));
+
+                          return Column(
+                            children: [
+                              CoronaLiveUpdateContainer(
+                                activeCases: snapshot.data!.activeCases,
+                                totalDeaths: snapshot.data!.totalDeaths,
+                                totalRecovered: snapshot.data!.totalRecovered,
+                                totalConfirmed: snapshot.data!.totalCases,
+                                lastUpdateDate: snapshot.data!.lastUpdateDate,
+                                country: snapshot.data!.countryName,
                               ),
-                              Expanded(
-                                flex: 1,
-                                child: LiveUpdateDetailWidget(
-                                  headline: 'Headline 2',
-                                  value: 'value 2',
-                                  color: Color(0xFFFF5959),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                flex: 1,
-                                child: LiveUpdateDetailWidget(
-                                  headline: 'Headline 3',
-                                  value: 'value 3',
-                                  color: Color(0xFFFFBD4D),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: LiveUpdateDetailWidget(
-                                  headline: 'Headline 4',
-                                  value: 'value 4',
-                                  color: Color(0xFF4CD979),
-                                ),
+                              PieChartWidget(
+                                confirmCount: confirmCountInt,
+                                dethCount: activeCountInt,
+                                activeCount: deathCountInt,
+                                recoverdCount: recoveredCountInt,
                               ),
                             ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height: 40,
-                                  width: double.infinity,
-                                  margin: EdgeInsets.only(left: 10, right: 10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Color(0xFF4B6BDB),
-                                  ),
-                                  child: Text(
-                                    'Last updated: 15/06/2021',
-                                    style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    PieChartWidget(
-                      confirmCount: 590,
-                      dethCount: 800,
-                      activeCount: 700,
-                      recoverdCount: 500,
+                          );
+                        }
+                        return const CircularProgressIndicator();
+                      },
                     ),
                   ],
                 ),
@@ -163,6 +143,132 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CoronaLiveUpdateContainer extends StatelessWidget {
+  const CoronaLiveUpdateContainer(
+      {required this.activeCases,
+      required this.lastUpdateDate,
+      required this.totalConfirmed,
+      required this.totalDeaths,
+      required this.totalRecovered,
+      required this.country});
+
+  final String totalConfirmed;
+  final String totalDeaths;
+  final String activeCases;
+  final String totalRecovered;
+  final String lastUpdateDate;
+  final String country;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 420,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 10, right: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xFF4B6BDB),
+                  ),
+                  child: Text(
+                    'Country: $country',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: LiveUpdateDetailWidget(
+                  headline: 'Confirmed',
+                  value: '$totalConfirmed+',
+                  color: Color(0xFF4AB6FF),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: LiveUpdateDetailWidget(
+                  headline: 'Deaths',
+                  value: '$totalDeaths+',
+                  color: Color(0xFFFF5959),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: LiveUpdateDetailWidget(
+                  headline: 'Active',
+                  value: '$activeCases+',
+                  color: Color(0xFFFFBD4D),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: LiveUpdateDetailWidget(
+                  headline: 'Recovered',
+                  value: '$totalRecovered+',
+                  color: Color(0xFF4CD979),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 10, right: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xFF4B6BDB),
+                  ),
+                  child: Text(
+                    'Last updated: $lastUpdateDate',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
