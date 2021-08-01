@@ -1,5 +1,5 @@
 import 'package:coronaliveupdate/screens/homePage.dart';
-import 'package:coronaliveupdate/screens/navTestScreen.dart';
+import 'package:coronaliveupdate/screens/listScreen.dart';
 import 'package:flutter/material.dart';
 
 List<BoxShadow> bottomNavBarShadow = [
@@ -82,7 +82,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             image: "images/icons/textIcon.png",
             isSelected: select[1],
             onTap: () {
-              Navigator.popAndPushNamed(context, NavTest.id);
+              Navigator.pushNamed(context, ListScreen.id);
             },
           ),
         ],
